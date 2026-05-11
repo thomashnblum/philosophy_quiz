@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-bg: #f0f0f0;
+  --color-surface: #ffffff;
+  --color-divider: #000000;
+  --color-gold: #fffc00; /* Neon Yellow */
+  --color-acid-green: #00FF41;
+  --color-acid-pink: #ff00ff;
+  --color-text: #000000;
+  --color-muted: #444444;
+  --color-faint: #888888;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+    background-image: none;
+  }
+
+  /* Grain effect is typical but let's make it more subtle or remove for "Geometric Balance" */
+  body::after {
+    display: none;
+  }
+}
+
+@utility neo-border {
+  @apply border-4 border-black;
+}
+
+@utility neo-shadow {
+  @apply shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+}
+
+@utility neo-shadow-sm {
+  @apply shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+@layer components {
+  .btn {
+    @apply relative inline-flex items-center justify-center px-8 py-4 text-[12px] font-black uppercase tracking-[0.15em] border-4 border-black transition-all duration-150 overflow-hidden cursor-pointer active:translate-x-0.5 active:translate-y-0.5 active:shadow-none;
+  }
+  
+  .btn-primary {
+    @apply bg-acid-green neo-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+  }
+
+  .btn-ghost {
+    @apply bg-white neo-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+  }
+
+  .glass {
+    @apply bg-surface neo-border neo-shadow;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-bg;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-black border border-white/20;
+  }
+}
+
+/* Custom transitions */
+.fade-up {
+  animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
